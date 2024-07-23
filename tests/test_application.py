@@ -11,7 +11,7 @@ from dogschool_es.application import DogSchool
 class TestDogSchool(TestCase):
     def test_dog_school(self) -> None:
         os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
-        os.environ["SQLITE_DBNAME"] = "dogschool_es.sqlite"
+        os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"
         
         # # Construct application object.
         # school = DogSchool()
@@ -29,12 +29,11 @@ class TestDogSchool(TestCase):
         # # Evolve application state.
         # buster_id = school.register_dog("Buster")
         # school.add_trick(buster_id, "roll over")
-        # school.add_trick(buster_id, "play dead")
 
         # # Query application state.
         # dog = school.get_dog(buster_id)
         # assert dog["name"] == "Buster"
-        # assert dog["tricks"] == ("roll over", "play dead")      
+        # assert dog["tricks"] == ("roll over",)      
         
         # del school
         
@@ -42,7 +41,12 @@ class TestDogSchool(TestCase):
         
         # with the given sqlite database, the following code pass the test. 
         # This proves the aggregate is build up from events stored in sqlite database.
-        fido_id = UUID("0ceec2bcbfe34e3ab5881f5b5ee89e4d")
+        fido_id = UUID("915f56e106b3488e9d2a95cf732e1af1")
         fido_details = school.get_dog(fido_id)
         self.assertEqual(fido_details["name"], "Fido")
         self.assertEqual(fido_details["tricks"], ("roll over", "play dead"))
+
+        buster_id = UUID("04af384dbe324ea182b7cc6816ca7b3a")
+        buster_details = school.get_dog(buster_id)
+        self.assertEqual(buster_details["name"], "Buster")
+        self.assertEqual(buster_details["tricks"], ("roll over",))        
