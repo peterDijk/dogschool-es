@@ -20,12 +20,11 @@ class TestSystem(TestCase):
         
         # Get the application objects.
         school = runner.get(DogSchool)
-
         counters = runner.get(Counters)
 
 
         # Check the results of processing the events.
-        assert counters.get_count('roll over') == 2 # 3 plus 2 that were stored in the database
+        assert counters.get_count('roll over') == 2 # disk-database has 2 roll over trick added events
         assert counters.get_count('fetch ball') == 0
         assert counters.get_count('play dead') == 1
 
