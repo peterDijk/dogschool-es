@@ -9,11 +9,7 @@ from dogschool_es.application import DogSchool
 
 
 class TestDogSchool(TestCase):
-    def test_dog_school(self) -> None:     
-        os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
-        os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"        
-
-           
+    def test_dog_school(self) -> None:
         # Construct application object.
         school = DogSchool()
 
