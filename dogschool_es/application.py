@@ -5,7 +5,7 @@ from typing import Any, Dict
 
 from eventsourcing.application import Application
 
-from dogschool_es.domainmodel import Dog
+from dogschool_es.aggregates.dog_aggregate import Dog
 
 
 
