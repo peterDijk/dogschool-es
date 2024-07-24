@@ -9,11 +9,7 @@ from dogschool_es.application import DogSchool
 
 
 class TestDogSchool(TestCase):
-    @pytest.mark.skip()
-    def test_dog_school(self) -> None:
-        os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
-        os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"
-        
+    def test_dog_school(self) -> None:        
         # Construct application object.
         school = DogSchool()
 
@@ -50,4 +46,4 @@ class TestDogSchool(TestCase):
         # buster_id = UUID("84c72235755e4f42a0c57cad76594d99")
         # buster_details = school.get_dog(buster_id)
         # self.assertEqual(buster_details["name"], "Buster")
-        # self.assertEqual(buster_details["tricks"], ("roll over",))        
+        # self.assertEqual(buster_details["tricks"], ("roll over",))

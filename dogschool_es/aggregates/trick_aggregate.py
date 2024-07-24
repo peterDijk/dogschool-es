@@ -3,8 +3,6 @@ from typing import Dict, List
 
 from eventsourcing.domain import Aggregate, event
 
-from dogschool_es.aggregates.dog_aggregate import Dog
-
 
 class Trick(Aggregate):
     class TrickCreated(Aggregate.Created):
