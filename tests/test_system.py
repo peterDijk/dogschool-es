@@ -7,7 +7,6 @@ from eventsourcing.system import SingleThreadedRunner
 from dogschool_es.application import DogSchool
 from dogschool_es.counter_processapp import Counters
 from dogschool_es.system import dog_system
-from dogschool_es.tricks_processapp import Tricks
 
 
 class TestSystem(TestCase):
@@ -23,19 +22,15 @@ class TestSystem(TestCase):
         # Get the application objects.
         school = runner.get(DogSchool)
         counters = runner.get(Counters)
-        # tricks = runner.get(Tricks)
         
         # Enable when rebuild from stored events.
         counters.pull_and_process(leader_name=DogSchool.__name__)
-        # tricks.pull_and_process(leader_name=DogSchool.__name__)
         
 
         # Check the results of processing the events.
         assert counters.get_count('roll over') == 2 # disk-database has 2 roll over trick added events
         assert counters.get_count('fetch ball') == 0
         assert counters.get_count('play dead') == 1
-        
-        # assert len(tricks.get_tricks()) == 2
 
         # Stop the runner.
         runner.stop()

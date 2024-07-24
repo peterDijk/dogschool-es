@@ -13,7 +13,7 @@ class TestDogSchool(TestCase):
         os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
         os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"
         
-        # # Construct application object.
+        # Construct application object.
         # school = DogSchool()
 
         # # Evolve application state.
