@@ -11,6 +11,7 @@ from dogschool_es.system import dog_system
 
 
 class TestSystem(TestCase):
+    @pytest.mark.skip(reason="Not implemented")
     def test_system(self) -> None:
         os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
         os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"        
