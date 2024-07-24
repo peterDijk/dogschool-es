@@ -26,14 +26,15 @@ class TestSystem(TestCase):
         
         # Enable when rebuild from stored events.
         tricks.pull_and_process(leader_name=DogSchool.__name__)
-        
 
         
         trick = tricks.get_trick('roll over')
         assert isinstance(trick, Trick)
         assert trick.dog_names == ["Fido", "Buster"]
         
-        assert isinstance(tricks.get_trick('play dead'), Trick)
+        trick2 = tricks.get_trick('play dead')
+        assert isinstance(trick2, Trick)
+        assert trick2.dog_names == ["Fido"]
         
 
         # Stop the runner.
