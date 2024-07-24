@@ -6,15 +6,22 @@ from eventsourcing.system import SingleThreadedRunner
 
 from dogschool_es.aggregates.trick_aggregate import Trick
 from dogschool_es.application import DogSchool
+from dogschool_es.database.connection import DatabaseConnection
 from dogschool_es.tricks_processapp import Tricks
 from dogschool_es.system import dog_system
+from dogschool_es.read_models.SchoolTricksReadModel import TricksWithDogs
 
 
 class TestSystem(TestCase):
     def test_system(self) -> None:
         os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
-        os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"        
+        os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"
+        
+        db_connection = DatabaseConnection()
 
+        engine = db_connection.engine()
+        TricksWithDogs.metadata.create_all(engine)
+                
         runner = SingleThreadedRunner(dog_system)
         runner.start()
         
