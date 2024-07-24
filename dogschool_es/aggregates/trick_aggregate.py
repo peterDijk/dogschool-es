@@ -11,17 +11,17 @@ class Trick(Aggregate):
         name: str
     
     class DogAdded(Aggregate.Event):
-        dog: Dog
+        dog_name: str
         
     @event(TrickCreated)
     def __init__(self, name) -> None:
         self.name = name
-        self.dogs: List[Dog] = []
+        self.dog_names: List[str] = []
         
     @classmethod
     def create_id(cls, name):
         return uuid5(NAMESPACE_URL, f'/tricks/{name}/')
     
     @event(DogAdded)
-    def add_dog(self, dog: Dog):
-        self.dogs.append(dog)
+    def add_dog(self, dog_name: str):
+        self.dog_names.append(dog_name)

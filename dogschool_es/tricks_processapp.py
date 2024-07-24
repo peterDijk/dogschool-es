@@ -16,12 +16,21 @@ class Tricks(ProcessApplication):
     def _(self, domain_event, process_event):
         event_trick_name = domain_event.trick
         dog_id = domain_event.originator_id
-        # dog = self.
+        # dog = self.repository.get(dog_id)
+
         try:
             trick_id = Trick.create_id(event_trick_name)
             trick = self.repository.get(trick_id)
         except AggregateNotFound:
             trick = Trick(event_trick_name)
-        trick.add_dog(dog)
+        trick.add_dog(dog_id)
         process_event.collect_events(trick)
-            
+        self.save(trick)
+        
+    def get_trick(self, trick_name):
+        trick_id = Trick.create_id(trick_name)
+        try:
+            trick = self.repository.get(trick_id)
+        except AggregateNotFound:
+            return None
+        return trick
