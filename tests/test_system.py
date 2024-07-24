@@ -6,9 +6,8 @@ from eventsourcing.system import SingleThreadedRunner
 
 from dogschool_es.aggregates.trick_aggregate import Trick
 from dogschool_es.application import DogSchool
-from dogschool_es.counter_processapp import Counters
-from dogschool_es.system import dog_system
 from dogschool_es.tricks_processapp import Tricks
+from dogschool_es.system import dog_system
 
 
 class TestSystem(TestCase):
