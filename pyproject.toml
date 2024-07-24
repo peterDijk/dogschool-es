@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 eventsourcing = "^9.2.22"
 pytest = "^8.3.1"
+sqlalchemy = "^2.0.31"
 
 
 [build-system]

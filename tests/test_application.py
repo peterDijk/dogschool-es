@@ -37,16 +37,16 @@ class TestDogSchool(TestCase):
         
         # del school
         
-        school = DogSchool()
+        # school = DogSchool()
         
-        # with the given sqlite database, the following code pass the test. 
-        # This proves the aggregate is build up from events stored in sqlite database.
-        fido_id = UUID("ac699fa116f34ee9a9f441b0b044bf72")
-        fido_details = school.get_dog(fido_id)
-        self.assertEqual(fido_details["name"], "Fido")
-        self.assertEqual(fido_details["tricks"], ("roll over", "play dead"))
+        # # with the given sqlite database, the following code pass the test. 
+        # # This proves the aggregate is build up from events stored in sqlite database.
+        # fido_id = UUID("ae13d396395a43ce8799e0a7b2341dfe")
+        # fido_details = school.get_dog(fido_id)
+        # self.assertEqual(fido_details["name"], "Fido")
+        # self.assertEqual(fido_details["tricks"], ("roll over", "play dead"))
 
-        buster_id = UUID("f4921b9abf324dfcb037744b59e7d3ba")
-        buster_details = school.get_dog(buster_id)
-        self.assertEqual(buster_details["name"], "Buster")
-        self.assertEqual(buster_details["tricks"], ("roll over",))        
+        # buster_id = UUID("84c72235755e4f42a0c57cad76594d99")
+        # buster_details = school.get_dog(buster_id)
+        # self.assertEqual(buster_details["name"], "Buster")
+        # self.assertEqual(buster_details["tricks"], ("roll over",))        

@@ -2,7 +2,7 @@ import pytest
 
 from unittest import TestCase
 
-from dogschool_es.domainmodel import Dog
+from dogschool_es.aggregates.dog_aggregate import Dog
 
 class TestDog(TestCase):
     def test_dog(self) -> None:

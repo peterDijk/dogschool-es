@@ -6,7 +6,7 @@ from eventsourcing.system import ProcessApplication
 from eventsourcing.dispatch import singledispatchmethod
 from eventsourcing.domain import Aggregate, event
 
-from dogschool_es.domainmodel import Dog
+from dogschool_es.aggregates.dog_aggregate import Dog
 
 class Counters(ProcessApplication):
     @singledispatchmethod
