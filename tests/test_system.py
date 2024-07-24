@@ -14,14 +14,15 @@ class TestSystem(TestCase):
         os.environ["PERSISTENCE_MODULE"] = "eventsourcing.sqlite"
         os.environ["SQLITE_DBNAME"] = "dogschool_es_mockDB2dogs3tricks.sqlite"        
 
-        
         runner = SingleThreadedRunner(dog_system)
         runner.start()
+        
         
         # Get the application objects.
         school = runner.get(DogSchool)
         counters = runner.get(Counters)
-
+        
+        counters.pull_and_process(leader_name=DogSchool.__name__)
 
         # Check the results of processing the events.
         assert counters.get_count('roll over') == 2 # disk-database has 2 roll over trick added events

@@ -41,12 +41,12 @@ class TestDogSchool(TestCase):
         
         # with the given sqlite database, the following code pass the test. 
         # This proves the aggregate is build up from events stored in sqlite database.
-        fido_id = UUID("915f56e106b3488e9d2a95cf732e1af1")
+        fido_id = UUID("ac699fa116f34ee9a9f441b0b044bf72")
         fido_details = school.get_dog(fido_id)
         self.assertEqual(fido_details["name"], "Fido")
         self.assertEqual(fido_details["tricks"], ("roll over", "play dead"))
 
-        buster_id = UUID("04af384dbe324ea182b7cc6816ca7b3a")
+        buster_id = UUID("f4921b9abf324dfcb037744b59e7d3ba")
         buster_details = school.get_dog(buster_id)
         self.assertEqual(buster_details["name"], "Buster")
         self.assertEqual(buster_details["tricks"], ("roll over",))        
