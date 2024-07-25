@@ -19,6 +19,8 @@ projection_repository = SchoolTricksRepository(session)
 TricksWithDogs.metadata.create_all(engine)
 
 class TricksReadModel(ProcessApplication):
+    _events_processed = 0
+    
     @singledispatchmethod
     def policy(self, domain_event, process_event):
         """Default policy"""
@@ -33,5 +35,10 @@ class TricksReadModel(ProcessApplication):
 
         try:
             projection_repository.add_trick(trick_model)
+            self._events_processed += 1
         except:
             raise Exception("Error adding trick to read model")
+        
+    @property    
+    def amount_events_processed(self):
+        return self._events_processed

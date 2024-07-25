@@ -25,7 +25,7 @@ class Tricks(ProcessApplication):
             trick = Trick(event_trick_name)
         trick.add_dog(dog.name)
         process_event.collect_events(trick)
-        # self.save(trick)
+        self.save(trick)
         
     def get_trick(self, trick_name):
         trick_id = Trick.create_id(trick_name)
