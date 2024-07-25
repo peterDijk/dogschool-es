@@ -1,0 +1,3 @@
+- Dogs are registered, and have tricks added to them
+- Tricks domain (Application) is listening for the Dog.TrickAdded event, creating a new Trick adding the Dog's name to it. This generates a Trick.DogAdded event
+- Tricks Read Model Application is listening to Trick.DogAdded events, and updates the read-projection with the latest state of the trick-aggregate. On the eventhandler, it fetches the Trick aggregate from the repository - version of Trick is from moment in time the Trick.DogAdded occured - and uses the dog_names to write to the projection
