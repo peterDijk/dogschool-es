@@ -11,11 +11,18 @@ class SchoolTricksRepository:
     
     def add_trick(self, trick):
         # check existing then update
-        try:
-            self.session.add(trick)
-        except:
+        existing_entry = self.session.query(TricksWithDogs).filter(TricksWithDogs.trick_id == trick.trick_id).first()
+        if existing_entry is not None:
             self.session.query(TricksWithDogs).filter(TricksWithDogs.trick_id == trick.trick_id).update({ "dog_names": trick.dog_names })
+            # self.session.flush()
+            self.session.commit()
+            return
+
+        self.session.add(trick)
+        # self.session.flush()
         self.session.commit()
+            
+            
         
     # def update_trick(self, trick):
     #     self.session.update(trick)
