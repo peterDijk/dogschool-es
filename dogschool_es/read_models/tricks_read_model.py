@@ -1,7 +1,7 @@
 from sqlalchemy.orm import DeclarativeBase
 from datetime import datetime
 
-from sqlalchemy import BigInteger, Column, DateTime, String, List, ARRAY
+from sqlalchemy import Column, DateTime, String
 
 class Base(DeclarativeBase):
     pass

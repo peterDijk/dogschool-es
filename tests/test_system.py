@@ -8,6 +8,7 @@ from dogschool_es.aggregates.trick_aggregate import Trick
 from dogschool_es.application import DogSchool
 from dogschool_es.tricks_processapp import Tricks
 from dogschool_es.system import dog_system
+from dogschool_es.tricks_readmodel_processapp import TricksReadModel
 
 
 class TestSystem(TestCase):
@@ -22,9 +23,11 @@ class TestSystem(TestCase):
         # Get the application objects.
         school = runner.get(DogSchool)
         tricks = runner.get(Tricks)
+        tricks_readmodel = runner.get(TricksReadModel)
         
         # Enable when rebuild from stored events.
         tricks.pull_and_process(leader_name=DogSchool.__name__)
+        tricks_readmodel.pull_and_process(leader_name=Tricks.__name__)
 
         
         trick = tricks.get_trick('roll over')
