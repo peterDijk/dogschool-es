@@ -31,6 +31,8 @@ class TricksReadModel(ProcessApplication):
         print(f"Trick id: {trick_id}")
 
         trick = self.repository.get(trick_id)
+        print(f"Trick dognames: {trick.dog_names}")
+        print(f"Trick version: {trick.version}")
         trick_model = trick_aggregate_to_model(trick)
 
         try:
