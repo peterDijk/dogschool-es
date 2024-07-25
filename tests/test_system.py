@@ -29,7 +29,15 @@ class TestSystem(TestCase):
         # Enable when rebuild from stored events.
         tricks.pull_and_process(leader_name=DogSchool.__name__, start=1) # start from the beginning!
         tricks_readmodel.pull_and_process(leader_name=Tricks.__name__, start=1) # start from the beginning!
-        assert tricks_readmodel.amount_events_processed == 3 # 3x a dog is added to a trick
+        assert tricks_readmodel.amount_events_processed == 6
+        # 3x a dog is added to a trick. The first 3x events are processed because the TricksProcessApp 
+        # is started reading from the beginning, and is reacting to the Dog.TrickAdded events. 
+        # This creates 3x Trick.DogAdded event, to which the system reacts because the 
+        # TricksReadModelProcessApp is listening to Trick.DogAdded events.
+        # Then the tricks_readmodel is replaying from the beginning again by the `pull_and_process` method call,
+        # and is reacting to the Trick.DogAdded events again. This adds another 3 events processed.
+        # This only happens when the only events in the database are from the Dog aggregate, and the Trick aggregate are 
+        # not yet created.
         
         trick = tricks.get_trick('roll over')
         assert isinstance(trick, Trick)
