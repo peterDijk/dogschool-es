@@ -12,9 +12,9 @@ class SchoolTricksRepository:
     def add_trick(self, trick):
         # check existing then update
         try:
-            self.session.query(TricksWithDogs).filter(TricksWithDogs.trick_id == trick.trick_id).update({ "dog_names": trick.dog_names })
-        except:
             self.session.add(trick)
+        except:
+            self.session.query(TricksWithDogs).filter(TricksWithDogs.trick_id == trick.trick_id).update({ "dog_names": trick.dog_names })
         self.session.commit()
         
     # def update_trick(self, trick):
